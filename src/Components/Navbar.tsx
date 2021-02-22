@@ -9,9 +9,6 @@ export const Navbar = () => {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
         <Link to="/" className="navbar-brand">
-          <a className="navbar-brand">
-            <img src="./../logo.png" width="35" height="35" alt="" />
-          </a>
         </Link>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
