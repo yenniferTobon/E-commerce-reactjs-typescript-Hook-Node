@@ -10,7 +10,7 @@ export const Navbar = () => {
       <div className="container-fluid">
         <Link to="/" className="navbar-brand">
           <a className="navbar-brand">
-            <img src="assets/img/A-64.png" width="35" height="35" alt="" />
+            <img src="./../logo.png" width="35" height="35" alt="" />
           </a>
         </Link>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -21,7 +21,7 @@ export const Navbar = () => {
           <form className="d-flex">
             <NavLink className="btn btn-dark mr-2" to="/login">Login</NavLink>
             <input className="form-control me-2" type="search" placeholder="Search"></input>
-            <NavLink className="btn btn-outline-success" to="/Search" type="submit">Search</NavLink>
+            <NavLink className="btn btn-outline-warning" to="/Search" type="submit">Search</NavLink>
           </form>
         </div>
       </div>
