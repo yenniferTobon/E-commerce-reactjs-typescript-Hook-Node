@@ -5,9 +5,6 @@ export const useFormHook = <T extends Object | Array<T>>(initState:T) => {
 
     const [order, setOrder] = useState(initState);
 
-    
-
-    
     const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
         //const { name, value } = target;
 
@@ -16,7 +13,6 @@ export const useFormHook = <T extends Object | Array<T>>(initState:T) => {
             [target.name]: target.value,
         });
     };
-
 
     return {
         order,

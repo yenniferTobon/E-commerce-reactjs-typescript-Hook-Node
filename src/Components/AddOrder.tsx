@@ -19,15 +19,7 @@ export const AddOrder = (props:any)  => {
         //console.log(order);
     }, [])
     
-    /*const handleSubmit = (ev:any) => {
-        ev.preventDefault();
-        console.log(order);
-        console.log(props.orders);
-        setOrder({
-            ...props.orders,
-            7 : order
-        });
-    }*/
+   
     const onSubmit = (data:Order) =>{
         console.log(data);
         console.log(props.orders);

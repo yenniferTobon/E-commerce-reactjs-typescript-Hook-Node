@@ -1,13 +1,12 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Order } from "../Interfaces/Order";
-import { uuid } from 'uuidv4';
 
 const OrderListTable = (props: any) => {
+
     return (
-        <table className="table">
-            <thead className="thead-light">
+        <table className="table" >
+            <thead className="thead-light" >
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
@@ -16,7 +15,7 @@ const OrderListTable = (props: any) => {
             </thead>
             <tbody>
                 {
-                    props.orders.length > 0 ?
+                   props.orders.length > 0 ?
                         props.orders.map((order: Order) => (
                             <tr key={order.id}>
                                 <td>{order.id}</td>
