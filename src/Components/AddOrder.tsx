@@ -1,67 +1,83 @@
 
 import { Order } from '../Interfaces/Order';
-import { useEffect, useState, ChangeEvent } from 'react';
+import { useEffect, useState, ChangeEvent, FormEvent, FC, useContext } from 'react';
 import { useFormHook } from '../hooks/useFormHook';
 import { ReportHandler } from 'web-vitals';
 import { useForm } from 'react-hook-form';
 import { NavLink, Link } from "react-router-dom";
+import { OrderList } from './OrderList';
+import { OrdersContext } from '../Context/DataContext';
+import { useHistory } from "react-router-dom";
 
-export const AddOrder = (props:any)  => {
+export interface ISignUpResult {
+    success: boolean;
+    message: string;
+}
 
-    const { register, errors, handleSubmit } = useForm();
-    const { order, handleChange, setOrder } = useFormHook<Order>({
+export const AddOrder = () => {
+
+    
+    //const { register, errors } = useForm();
+    const [ newOrder, setNewOrder ] = useState<Order>({
         id: 0,
         name: ''
     });
 
-
-    useEffect(() => {
-        //console.log(order);
-    }, [])
-    
-   
-    const onSubmit = (data:Order) =>{
-        console.log(data);
-        console.log(props.orders);
-        setOrder({
-            ...props.orders,
-            7 : data
-        })
-    }
+    let history = useHistory();
+    const { orders, setOrders} = useContext(OrdersContext);
+    const { id, name } = newOrder; 
 
     
+
+
+    const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
+        //const { name, value } = target;
+
+        setNewOrder({
+            ...newOrder,
+            [target.name]: target.value,
+        });
+    };
+
+    
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+        
+        e.preventDefault();
+        console.log(orders);
+
+        setOrders([
+            ...orders,
+            newOrder
+        ]);
+        
+        history.push("/orderList");
+    };
+
+    
+
     return (
-
-        <form onSubmit={ handleSubmit(onSubmit) }>
-            <div className="mb-3">
-                <label className="form-label">id:</label>
-                <input type="text" className="form-control" name='id' ref={
-                    register({
-                        required: { value: true, message:'field required'}
-                    })
-                }/>
+        <form noValidate={true} onSubmit={handleSubmit}>
+            <div className="row">
+                <label htmlFor="id">id:</label>
+                <input type="text" className="form-control" name='id' value={id} onChange={handleChange} />
+                <span className="error">{id}</span>
             </div>
-            <div>
-                {errors?.id?.message}
+            <div className="row">
+                <label htmlFor="name">name:</label>
+                <input type="text" className="form-control" name='name' value={name} onChange={handleChange} />
+                <span className="error">{name}</span>
             </div>
-            <div className="mb-3">
-                <label className="form-label">name:</label>
-                <input type="text" className="form-control" name='name' ref={
-                    register({
-                        required: { value: true, message:'field required'}
-                    })
-                }/>
-            </div>
-            <div>
-                {errors?.name?.message}
-            </div>
-            <div className="form-group row">
+            <div className="row">
                 <div className="col-sm-10">
-                    <button className="btn btn btn-warning btn-sl" type="submit">Add order</button>
+                    <button className="btn btn btn-warning btn-sl"  type="submit">Add order</button>
                 </div>
             </div>
-            <pre>{JSON.stringify(order)}</pre>
+            <div className="row">
+                <span></span>
+            </div>
+            <pre>{JSON.stringify(id)}</pre>
         </form>
+        
     )
 }
 
